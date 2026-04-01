@@ -311,7 +311,18 @@ button {
     visibility: visible;
     transform: translateY(0);
     width: 90px;
+    bottom: calc(100% + 50px);
     border-radius: 30px;
   }
 
+  @media (max-width: 600px) {
+  body {
+    background-image: url("images/background-mobile.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-attachment: scroll;
+  }
 }
