@@ -6,7 +6,23 @@ body {
 
   color: white;
   font-family: Arial, sans-serif;
-  text-align: start;
+  text-align: left;
+
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+  margin: 0;
+  border-radius: 30px;
+
+  padding: clamp(12px, 3vw, 24px);
+
+  background: rgba(0, 0, 0, 0.5);
+
+  box-sizing: border-box;
 }
 
 h1 {
@@ -41,7 +57,7 @@ button {
 
   background-color: #00ffcc;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
 
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -59,7 +75,7 @@ button {
   font-size: 16px;
   background-color: #006eff;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
@@ -73,7 +89,7 @@ button {
   bottom: calc(100% + 50px);
   right: 0;
 
-  width: 100px;
+  width: 90px;
   padding: 10px 12px;
   border-radius: 30px;
   background: rgba(0, 25, 53, 0.75);
@@ -94,4 +110,52 @@ button {
 #volume-slider {
   width: 100%;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 12px;
+    background-attachment: scroll;
+  }
+
+  .content {
+    padding: 16px;
+    border-radius: 30px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p, li, a {
+    font-size: 16px;
+  }
+
+  .music-player {
+    bottom: 12px;
+    right: 12px;
+  }
+
+  #music-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .volume-wrap {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    width: 90px;
+    border-radius: 30px;
+  }
+
 }
