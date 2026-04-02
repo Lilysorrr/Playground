@@ -112,7 +112,7 @@ button {
 
   body {
     padding: 12px;
-    background-attachment: scroll;
+    background-attachment: fixed;
   }
 
   .content {
@@ -272,7 +272,7 @@ button {
 
   body {
     padding: 12px;
-    background-attachment: scroll;
+    background-attachment: fixed1;
   }
 
   .content {
@@ -323,6 +323,6 @@ button {
     background-position: center;
     background-repeat: no-repeat;
 
-    background-attachment: scroll;
+    background-attachment: fixed;
   }
 }
