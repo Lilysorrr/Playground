@@ -54,7 +54,7 @@
     </audio>
   
     <div class="music-player">
-      <button id="music-btn" type="button">Play Music</button>
+      <button id="music-btn" type="button">De Anima</button>
   
       <div class="volume-wrap">
         <input
@@ -81,10 +81,10 @@
         try {
           if (music.paused) {
             await music.play();
-            musicBtn.textContent = "Pause Music";
+            musicBtn.textContent = "De Anima";
           } else {
             music.pause();
-            musicBtn.textContent = "Play Music";
+            musicBtn.textContent = "De Anima";
           }
         } catch (error) {
           console.error("Audio failed to play:", error);
