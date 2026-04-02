@@ -108,7 +108,7 @@ button {
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
   body {
     padding: 12px;
@@ -268,7 +268,7 @@ button {
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
   body {
     padding: 12px;
@@ -315,7 +315,7 @@ button {
     border-radius: 30px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
   body {
     background-image: url("images/background-mobile.jpg");
 
