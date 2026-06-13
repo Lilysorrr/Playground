@@ -197,6 +197,54 @@ a:hover {
   min-width: 120px;
 }
 
+/* toggle button */
+.toggle-player {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+
+  border: none;
+  border-radius: 999px;
+
+  width: 26px;
+  height: 26px;
+
+  background: rgba(255,255,255,0.12);
+  color: white;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+}
+
+/* allow positioning */
+.player-card {
+  position: relative;
+}
+
+/* MINIMIZED STATE */
+.player-card.minimized {
+  width: 180px;
+  padding: 8px;
+}
+
+/* hide heavy UI when minimized */
+.player-card.minimized .player-left,
+.player-card.minimized .track-info,
+.player-card.minimized .volume-wrap {
+  display: none;
+}
+
+/* keep controls visible but compact */
+.player-card.minimized .player-controls {
+  justify-content: center;
+}
+
+/* keep progress tiny */
+.player-card.minimized #progress {
+  height: 4px;
+}
+
 /* ---------- TRACK INFO ---------- */
 
 .track-info {
