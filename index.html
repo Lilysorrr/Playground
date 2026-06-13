@@ -130,6 +130,18 @@ const volumeSlider = document.getElementById("volume-slider");
 
 const currentTimeText = document.getElementById("current-time");
 const durationText = document.getElementById("duration");
+const playerCard = document.querySelector(".player-card");
+const toggleBtn = document.getElementById("toggle-player");
+
+let minimized = false;
+
+toggleBtn.addEventListener("click", () => {
+  minimized = !minimized;
+
+  playerCard.classList.toggle("minimized", minimized);
+
+  toggleBtn.textContent = minimized ? "▴" : "▾";
+});
 
 let isPlaying = false;
 
