@@ -42,8 +42,8 @@ body {
 /* toggle button */
 .toggle-player {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: -35px;
 
   z-index: 10;
 
@@ -92,7 +92,7 @@ a:hover {
 .music-player {
   position: fixed;
   top: 30px;
-  right: 30px;
+  right: 65px;
 
   z-index: 1000;
 }
