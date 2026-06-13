@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Playtest No.1</title>
+</head>
+
+<body>
+
+  <div class="bg-mesh"></div>
+  
+
+  <div class="content">
+
+    <h1>Playtest No.1</h1>
+
+    <p>
+      This is just me messing around with a website while learning HTML/CSS/JS. It’s not meant to be perfect, stable, or anything serious. It will probably break at some point. That’s kind of the point.
+    </p>
+
+    <hr>
+
+    <h2>About me</h2>
+    <ul>
+      <li>Name: Lily Winters</li>
+      <li>Age: 17</li>
+      <li>Location: Earth</li>
+    </ul>
+
+    <h3>Stuff I’m into</h3>
+    <ul>
+      <li>Tech and random devices</li>
+      <li>Music (mostly bass-heavy stuff)</li>
+      <li>Games and building weird UI things</li>
+      <li>Breaking things and fixing them again</li>
+    </ul>
+
+    <hr>
+
+    <h2>What this is</h2>
+    <p>
+      Basically a playground. I use it to test ideas, layouts, and whatever else I feel like building at the moment.
+    </p>
+
+    <hr>
+
+    <h2>Links</h2>
+    <ul>
+      <li><a href="https://bsky.app/profile/lilysor.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a></li>
+      <li><a href="https://x.com/lilysorrr" target="_blank" rel="noopener noreferrer">X</a></li>
+    </ul>
+
+  </div>
+
+ <div class="music-player">
+     <button id="toggle-player" class="toggle-player">▾</button>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="audio/03. De Anima.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="player-card">
+
+    <!-- LEFT -->
+    <div class="player-left">
+
+      <div class="player-controls">
+        <button id="prev-btn">⏮</button>
+        <button id="music-btn">▶</button>
+        <button id="next-btn">⏭</button>
+      </div>
+
+      <div class="progress-wrap">
+
+        <input
+          id="progress"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+        >
+
+        <div class="time-display">
+          <span id="current-time">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="player-right">
+
+      <div class="track-info">
+        <div id="track-title">De Anima</div>
+        <div id="track-artist">Wuthering Waves</div>
+      </div>
+
+      <div class="volume-wrap">
+        <span class="volume-icon">🔊</span>
+
+        <input
+          id="volume-slider"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.3"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+const music = document.getElementById("bg-music");
+
+const playBtn = document.getElementById("music-btn");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+
+const progress = document.getElementById("progress");
+const volumeSlider = document.getElementById("volume-slider");
+
+const currentTimeText = document.getElementById("current-time");
+const durationText = document.getElementById("duration");
+const playerCard = document.querySelector(".player-card");
+const toggleBtn = document.getElementById("toggle-player");
+
+let minimized = false;
+
+toggleBtn.addEventListener("click", () => {
+  minimized = !minimized;
+
+  playerCard.classList.toggle("minimized", minimized);
+
+  toggleBtn.textContent = minimized ? "▲" : "▼";
+});
+
+let isPlaying = false;
+
+const tracks = [
+  {
+    title: "Between the Waves",
+    artist: "Wuthering Waves",
+    file: "audio/01. Between the Waves.flac"
+  },
+   {
+    title: "De Anima (On the Soul)",
+    artist: "Wuthering Waves",
+    file: "audio/03. De Anima   On the Soul.flac"
+  },
+   {
+    title: "Astrum Unicum (Stars, Rebirth, and You)",
+    artist: "Wuthering Waves",
+    file: "audio/06. Astrum Unicum   Stars, Rebirth, and You.flac"
+  },
+  {
+    title: "Refuge of the Survivors",
+    artist: "Wuthering Waves",
+    file: "audio/14. Refuge of the Survivors.flac"
+  }
+];
+
+let current = 0;
+
+function loadTrack(i) {
+  const t = tracks[i];
+  music.src = t.file;
+
+  document.getElementById("track-title").textContent = t.title;
+  document.getElementById("track-artist").textContent = t.artist;
+}
+
+function updateButton() {
+  playBtn.textContent = isPlaying ? "⏸" : "▶";
+}
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return `${m}:${sec.toString().padStart(2,"0")}`;
+}
+
+function updateProgressFill() {
+  progress.style.setProperty("--progress", `${progress.value}%`);
+}
+
+function updateVolumeFill() {
+  volumeSlider.style.setProperty("--volume", `${volumeSlider.value * 100}%`);
+}
+
+/* PLAY */
+playBtn.addEventListener("click", async () => {
+  if (!isPlaying) {
+    await music.play();
+    isPlaying = true;
+  } else {
+    music.pause();
+    isPlaying = false;
+  }
+  updateButton();
+});
+
+/* NEXT */
+nextBtn.addEventListener("click", async () => {
+  current = (current + 1) % tracks.length;
+  loadTrack(current);
+  await music.play();
+  isPlaying = true;
+  updateButton();
+});
+
+/* PREV */
+prevBtn.addEventListener("click", async () => {
+  current = (current - 1 + tracks.length) % tracks.length;
+  loadTrack(current);
+  await music.play();
+  isPlaying = true;
+  updateButton();
+});
+
+/* TIME UPDATE */
+music.addEventListener("timeupdate", () => {
+  if (!music.duration) return;
+
+  const percent = (music.currentTime / music.duration) * 100;
+
+  progress.value = percent;
+  progress.style.setProperty("--progress", `${percent}%`);
+
+  currentTimeText.textContent = formatTime(music.currentTime);
+  durationText.textContent = formatTime(music.duration);
+});
+
+/* META */
+music.addEventListener("loadedmetadata", () => {
+  durationText.textContent = formatTime(music.duration);
+});
+
+/* SEEK */
+progress.addEventListener("input", () => {
+  music.currentTime = (progress.value / 100) * music.duration;
+  updateProgressFill();
+});
+
+/* VOLUME */
+volumeSlider.addEventListener("input", () => {
+  music.volume = volumeSlider.value;
+  updateVolumeFill();
+});
+
+/* END */
+music.addEventListener("ended", () => {
+  isPlaying = false;
+  updateButton();
+});
+
+/* INIT */
+music.volume = 0.3;
+
+loadTrack(current);
+updateButton();
+updateVolumeFill();
+updateProgressFill();
+
+</script>
+
+</body>
+</html>
