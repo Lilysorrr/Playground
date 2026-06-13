@@ -73,10 +73,11 @@ a:hover {
 /* ---------- MAIN PLAYER CARD ---------- */
 
 .player-card {
+  position: relative;
+
   display: flex;
   flex-direction: row;
 
-  align-items: flex-start;
   gap: 18px;
 
   min-width: 340px;
@@ -92,8 +93,21 @@ a:hover {
 
   border: 1px solid rgba(255,255,255,0.15);
 
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.35);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+
+/* COLLAPSED = fully gone */
+.player-card.minimized {
+  transform: scale(0.95);
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+
+  pointer-events: none;
 }
 
 /* ---------- LEFT SIDE ---------- */
@@ -200,14 +214,16 @@ a:hover {
 /* toggle button */
 .toggle-player {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 10px;
+  right: 10px;
+
+  z-index: 10;
+
+  width: 30px;
+  height: 30px;
 
   border: none;
   border-radius: 999px;
-
-  width: 26px;
-  height: 26px;
 
   background: rgba(255,255,255,0.12);
   color: white;
@@ -215,34 +231,10 @@ a:hover {
   cursor: pointer;
 
   backdrop-filter: blur(10px);
-}
 
-/* allow positioning */
-.player-card {
-  position: relative;
-}
-
-/* MINIMIZED STATE */
-.player-card.minimized {
-  width: 180px;
-  padding: 8px;
-}
-
-/* hide heavy UI when minimized */
-.player-card.minimized .player-left,
-.player-card.minimized .track-info,
-.player-card.minimized .volume-wrap {
-  display: none;
-}
-
-/* keep controls visible but compact */
-.player-card.minimized .player-controls {
+  display: flex;
+  align-items: center;
   justify-content: center;
-}
-
-/* keep progress tiny */
-.player-card.minimized #progress {
-  height: 4px;
 }
 
 /* ---------- TRACK INFO ---------- */
