@@ -458,3 +458,13 @@ a:hover {
     transform: translate(-20%, -20%) scale(1);
   }
 } 
+
+@media (max-width: 768px) {
+  .player-card {
+    width: 260px;
+  }
+
+  .player-card.minimized {
+    display: none; /* hard kill on mobile */
+  }
+}
