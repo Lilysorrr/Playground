@@ -38,6 +38,33 @@ body {
   box-sizing: border-box;
 }
 
+
+/* toggle button */
+.toggle-player {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  z-index: 10;
+
+  width: 30px;
+  height: 30px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.12);
+  color: white;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ---------- TEXT ---------- */
 
 h1 {
@@ -69,33 +96,6 @@ a:hover {
 
   z-index: 1000;
 }
-
-/* toggle button */
-.toggle-player {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-  z-index: 10;
-
-  width: 30px;
-  height: 30px;
-
-  border: none;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.12);
-  color: white;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(10px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 
 /* ---------- MAIN PLAYER CARD ---------- */
 
